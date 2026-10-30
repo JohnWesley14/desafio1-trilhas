@@ -1,4 +1,3 @@
-# Sistema de PDV com Descontos
 
 compras = []
 
@@ -6,38 +5,35 @@ print("=== Sistema de PDV com Descontos ===")
 print("Digite 0 no valor da compra a qualquer momento para encerrar.\n")
 
 while True:
-    # Leitura e validação do valor da compra
+
     valor_compra = float(input("Digite o valor da compra (R$): "))
     while valor_compra < 0:
         print("Aviso: O valor da compra não pode ser negativo. Tente novamente.")
         valor_compra = float(input("Digite o valor da compra (R$): "))
 
-    # Condição de encerramento
+
     if valor_compra == 0:
         break
 
-    # Leitura e validação da idade do cliente
     idade = int(input("Digite a idade do cliente: "))
     while idade < 0:
         print("Aviso: A idade não pode ser negativa. Tente novamente.")
         idade = int(input("Digite a idade do cliente: "))
 
-    # Regra 1: Desconto por idade (20% se idade >= 65)
+    # Desconto por idade (20% se idade >= 65)
     valor_apos_idade = valor_compra
     if idade >= 65:
         valor_apos_idade = valor_compra * 0.80
 
-    # Regra 2: Desconto por valor (10% extra sobre o valor já com desconto de idade, se > 100)
+    # Desconto por valor (10% extra sobre o valor já com desconto de idade, se > 100)
     valor_final = valor_apos_idade
     if valor_apos_idade > 100:
         valor_final = valor_apos_idade * 0.90
 
     desconto = valor_compra - valor_final
 
-    # Exibição do valor final da compra formatado
     print(f"Valor final: R$ {valor_final:.2f}\n")
 
-    # Guardando a compra na lista de histórico
     compras.append({
         "original": valor_compra,
         "desconto": desconto,
